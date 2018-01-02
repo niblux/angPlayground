@@ -9,6 +9,9 @@
             <ul>
                 <li (click)="changeProperty()"><i class="fa" [class.fa-star]="starFilled" [class.fa-star-o]="!starFilled"></i> Code Stuff</li>
             </ul>
+            <label for="text">{{ textValue }}</label>
+            <input #name (input)="storeValue(name.value)" type="text" name="text" class="form-control">
+            <!-- <input type="text" name="text" [(ngModel)]="textValue"> -->
       </div>
     </div>
 </div>
