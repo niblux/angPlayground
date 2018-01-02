@@ -1,6 +1,16 @@
-<button class="btn btn-success">Click</button>
+<div class="container">
+    <div class="row">
+   <div class="col-sm"> 
+       <h1>Property Binding</h1>
+   </div>
+      <div class="col-sm-12">
+            <button class="btn btn-success">Click</button>
+            <p [class]='colour'>Red Words</p>
+            <ul>
+                <li (click)="changeProperty()"><i class="fa" [class.fa-star]="starFilled" [class.fa-star-o]="!starFilled"></i> Code Stuff</li>
+            </ul>
+      </div>
+    </div>
+</div>
 
-<ul>
-    <li> <i [class]="changedClassIcon"></i> Code Stuff</li>
-</ul>
 

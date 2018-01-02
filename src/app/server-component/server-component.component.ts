@@ -7,17 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServerComponentComponent implements OnInit {
 
-    changedClassIcon = '';
+    starFilled: boolean;
+    colour    : string  = 'red';
 
     constructor() {
+        setTimeout(() => {
+            this.starFilled = !this.starFilled;
+        }, 2000);
     }
 
     ngOnInit() {
     
     }
   
-    changeProperty(){ 
-        this.changedClassIcon = 'fas fa-code';
-    }  
+ 
 
 }
