@@ -23,7 +23,6 @@ export class ServerComponentComponent implements OnInit {
       
     } 
 
-
     changeProperty() {
         this.starFilled = !this.starFilled;
     }
