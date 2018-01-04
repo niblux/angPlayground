@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ServerComponentComponent } from './server-component/server-component.component';
 import { DataBindingComponent } from './data-binding/data-binding.component';
+import { FormsComponent } from './forms/forms.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServerComponentComponent,
-    DataBindingComponent
+    DataBindingComponent,
+    FormsComponent
   ],
   imports: [
     BrowserModule,
