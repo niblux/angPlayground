@@ -1,0 +1,23 @@
+<!-- Template Driven Form -->
+<div class="container">
+  <div class="row">
+    <form>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input required minlength="3" maxlength="6"  pattern="Nabil" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" id="firstName" 
+        type="text" class="form-control" >
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">Please enter your name</div>
+
+        <!-- APPARENTLY AN ANGULAR ERROR. : MUST TRY AN UPDATE OR FIND SOLUTION -->
+        <!-- <div class="alert alert-danger" *ngIf="firstName.errors.minlength">Min Length Invalid</div>
+        <div class="alert alert-danger" *ngIf="firstName.errors.pattern">Please enter your the name Nabil</div> -->
+
+      </div>
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea id="comment" cols="30" rows="10" class="form-control"></textarea>
+      </div>
+      <button class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
