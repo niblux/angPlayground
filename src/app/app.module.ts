@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { ServerComponentComponent } from './server-component/server-component.component';
 import { DataBindingComponent } from './data-binding/data-binding.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { PasswordTestComponent } from './password-test/password-test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServerComponentComponent,
     DataBindingComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    PasswordTestComponent
   ],
   imports: [
     BrowserModule,
