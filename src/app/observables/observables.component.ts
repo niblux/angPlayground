@@ -20,7 +20,14 @@ export class ObservablesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  
+    let obsArray = Observable.from(this.dataObject);
+
+    obsArray
+    .filter(objName => objName.name == 'kanye')
+    .mapTo('Kanye')
+    .subscribe(results => console.log('Result of observable :',results));
+
+    console.log('Result of for loop :' ,this.forLoopTest(this.dataObject));
   }
 
   forLoopTest(dataObject) {
@@ -34,5 +41,9 @@ export class ObservablesComponent implements OnInit {
       return this.storedNames;
     }
   }
+
+
+
+  
 
 }
