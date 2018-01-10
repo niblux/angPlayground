@@ -7,6 +7,7 @@ import { ServerComponentComponent } from './server-component/server-component.co
 import { DataBindingComponent } from './data-binding/data-binding.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { PasswordTestComponent } from './password-test/password-test.component';
+import { ObservablesComponent } from './observables/observables.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PasswordTestComponent } from './password-test/password-test.component';
     ServerComponentComponent,
     DataBindingComponent,
     ContactFormComponent,
-    PasswordTestComponent
+    PasswordTestComponent,
+    ObservablesComponent
   ],
   imports: [
     BrowserModule,
