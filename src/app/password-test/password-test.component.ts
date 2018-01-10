@@ -11,74 +11,31 @@ import { ElementRef } from '@angular/core/src/linker/element_ref';
 })
 export class PasswordTestComponent{
 
-  public originalValue: string[] = [];
-  public asteriskvalue: string;
+  public name: string = 'Nabs'
 
-  storedValue: string = '';
-  starredValue: string[] = [];
+  public originalValue;
+  public starredValue;
 
-  @ViewChild('passwordText') input: ElementRef;
 
-  onChange(va: any) {
-    this.originalValue.push(va.srcElement.value);
+  @ViewChild('passwordText') input;
 
-    let i;
-    let j;
+  ngOnInit() {
 
-    for (i = 0; i < this.originalValue.length; i++) {
-      this.asteriskvalue = this.originalValue[i];
-    }
+    let keyUpObs = Observable.fromEvent(this.input.nativeElement, 'keyup');
 
-    // console.log(this.asteriskvalue);
-    
-    
 
-    let keyUpObs = Observable.from(this.input.nativeElement);
-    console.log(keyUpObs);
-    
+    keyUpObs.map((x) => {
+      return (<HTMLInputElement>event.target).value;
+    }).subscribe(x => {
+      this.starredValue = x.replace(/./g, '*');
+    })
 
-    // keyUpObs.subscribe((results) => {
-    //   this.starredValue.push(results);
 
-    //   for (j = 0; j < this.starredValue.length; j++) {
-    //     this.asteriskvalue = this.starredValue[j].replace(/./g, '*');;
-    //   }
+    keyUpObs.subscribe((x: HTMLInputElement) => {
+      this.originalValue = (<HTMLInputElement>event.target).value;
+    })
 
-    // });
-
-    // keyUpObs.map((x : string) => {
-    //   this.starredValue = x;
-    //   this.starredValue.replace(/./g, '*')
-    //   console.log(this.starredValue);
-    // }).subscribe(y => {
-    //   console.log('starred',y)
-    // })
 
   }
-
-  // public keyUp = document.querySelector('keyUpNode');
-
-  // @ViewChild('passwordText') input; 
-
-  // ngAfterViewInit() {
-  //   let keyUpObs = Observable.fromEvent(this.input.nativeElement,'keyup');
-
-  //   keyUpObs.subscribe((results: any) => {
-  //     console.log('Original Value',results.srcElement.value);
-  //     this.originalValue = results;
-  //   });
-
-  //   keyUpObs.map((x : string) => {
-  //     x.replace(/./g, '*')
-  //   }).subscribe(y => {
-  //     console.log(y)
-  //   })
-
-    // keyUpObs.map((x : string) => {
-    //  this.asteriskvalue = x.replace(/./g, "*");
-    // }).subscribe(results => {
-    //      console.dir('Map Result',results);
-    // });
-  // }
 
 }
