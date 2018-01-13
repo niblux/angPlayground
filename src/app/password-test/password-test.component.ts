@@ -22,7 +22,13 @@ export class PasswordTestComponent{
   ngOnInit() {
 
     let keyUpObs = Observable.fromEvent(this.input.nativeElement, 'keyup');
-
+    let keyDownObs = Observable.fromEvent(this.input.nativeElement, 'keyup');
+    
+    
+    keyDownObs.subscribe((x : KeyboardEvent) => {
+        let charValue = x.key;      
+        charValue.replace(/./g, '*');
+    })
 
     keyUpObs.map((x) => {
       return (<HTMLInputElement>event.target).value;

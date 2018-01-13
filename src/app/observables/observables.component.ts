@@ -22,6 +22,10 @@ export class ObservablesComponent implements OnInit {
   ngOnInit() {
     let obsArray = Observable.from(this.dataObject);
 
+    obsArray.subscribe(results => {
+      console.log(results);
+    })
+
     obsArray
     .filter(objName => objName.name == 'kanye')
     .mapTo('Kanye')
