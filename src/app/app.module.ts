@@ -8,6 +8,7 @@ import { DataBindingComponent } from './data-binding/data-binding.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { PasswordTestComponent } from './password-test/password-test.component';
 import { ObservablesComponent } from './observables/observables.component';
+import { IndexedDBComponent } from './indexed-db/indexed-db.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ObservablesComponent } from './observables/observables.component';
     DataBindingComponent,
     ContactFormComponent,
     PasswordTestComponent,
-    ObservablesComponent
+    ObservablesComponent,
+    IndexedDBComponent
   ],
   imports: [
     BrowserModule,
