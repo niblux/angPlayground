@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexedDBComponent implements OnInit {
 
+  email: string;
+  request;
+  db;
+  sabreObjectStore = 'sabreDatabase';
+
   constructor() { }
 
   ngOnInit() {
@@ -37,5 +42,29 @@ export class IndexedDBComponent implements OnInit {
       objectStore.createIndex('index', 'email', { unique: true, });
 
     } // end upgrade
+  }
+
+  addData(){
+    let userObject = [{
+      username: this.email
+    }]
+
+    let transaction = this.db.transaction(this.sabreObjectStore, 'readwrite');
+
+    transaction.oncomplete = (event) => {
+      console.log('Transacton Completed Successfully')
+    }
+
+
+    let transactionObjectStore = transaction.objectStore(this.sabreObjectStore);
+    console.log(transactionObjectStore.username);
+
+    let transactionRequest = transactionObjectStore.add(userObject[0]);
+
+    transactionRequest.onsuccess = (event) => {
+      console.log('Transaction Successful ' + event);
+
+    }
+  }
 
 }
