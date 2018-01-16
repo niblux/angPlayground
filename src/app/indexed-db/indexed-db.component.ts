@@ -44,27 +44,5 @@ export class IndexedDBComponent implements OnInit {
     } // end upgrade
   }
 
-  addData(){
-    let userObject = [{
-      username: this.email
-    }]
-
-    let transaction = this.db.transaction(this.sabreObjectStore, 'readwrite');
-
-    transaction.oncomplete = (event) => {
-      console.log('Transacton Completed Successfully')
-    }
-
-
-    let transactionObjectStore = transaction.objectStore(this.sabreObjectStore);
-    console.log(transactionObjectStore.username);
-
-    let transactionRequest = transactionObjectStore.add(userObject[0]);
-
-    transactionRequest.onsuccess = (event) => {
-      console.log('Transaction Successful ' + event);
-
-    }
-  }
 
 }
