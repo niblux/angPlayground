@@ -15,145 +15,107 @@ export class IndexedDBComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+    /**
+     * Attempting to retrieve the email address without a value check raises an error
+     * as there is no value to retrieve prior to the database being created. 
+     */
+
+    if (this.username.nativeElement.value == '') {
+      this.storeEmailAddress();
+    } else {
+
+    }
+
+    this.mode = environment.type.toUpperCase();
   }
 
-  email: string;
-  request;
-  db;
-  sabreObjectStore = 'usernames';
-  idbRequest;
-  idbRequestCapture;
-  storedEmailAddress: string;
+  createDatabase() {
+    let dbOpenRequestObject = window.indexedDB;
 
+    this.openDBRequest = dbOpenRequestObject.open('sabreIndexedDatabase');
 
-  captureStoredEmail() {
-    let idbCapture = window.indexedDB;
+    this.openDBRequest.onupgradeneeded = (e: any) => {
 
-    this.idbRequestCapture = idbCapture.open('sabreIndexedDatabase');
+      let requestHandler = e.target.result;
 
-    this.idbRequestCapture.onsuccess = (event: any) => {
-      let dbCapture = event.target.result
+      let objectStoreHandler: IDBObjectStore;
+
+      objectStoreHandler = requestHandler.createObjectStore(['usernames'], { autoIncrement: true });
+    }
+
+    this.openDBRequest.onerror = () => {
+      console.log('Error');
+    }
+  }
+
+  storeEmailAddress() {
+    let indexDBRequestObject = window.indexedDB;
+
+    this.emailDbRequest = indexDBRequestObject.open('sabreIndexedDatabase');
+
+    /**
+     * Every Indexed DB connection returns an event object which is used as a handler to perform CRUD actions
+     * on the created database. 
+     */
+
+    this.emailDbRequest.onsuccess = (event: any) => {
+      let dbEmailEventhandler = event.target.result
 
       let transaction: IDBTransaction;
 
-      transaction = dbCapture.transaction(['usernames'], 'readonly');
+      transaction = dbEmailEventhandler.transaction(['usernames'], 'readonly');
 
-      let captureHandler = transaction.objectStore('usernames');
+      let transactionStoreHandler = transaction.objectStore('usernames');
 
-      let captureRequest = captureHandler.get('username');
+      let transactionRequestHandler = transactionStoreHandler.get('username');
 
-      captureRequest.onsuccess = (event: any) => {
+      transactionRequestHandler.onsuccess = (event: any) => {
         this.storedEmailAddress = event.target.result;
-        console.log('Retrieved From Init', this.storedEmailAddress)
       }
     }
 
     return this.storedEmailAddress;
   }
 
-  storeEmailLocalStorage(usernameValue: string) {
+  /**
+  * The username entered is stored and used to add to the database 
+  * (if database isn't created) 
+  * and update the inserted value 
+  * (if there is already a username stored).
+  * 
+  * @param usernameValue
+  */
+  retrieveUsername(usernameValue: string) {
 
-    console.log(usernameValue);
+    let retrieveUsernameObject = window.indexedDB;
 
-    let idb = window.indexedDB;
-    this.idbRequest = idb.open('sabreIndexedDatabase');
+    this.openDBRequest = retrieveUsernameObject.open('sabreIndexedDatabase');
 
-    //console.log(this.idbRequest);
+    this.openDBRequest.onsuccess = (e: any) => {
 
-    this.idbRequest.onupgradeneeded = (e: any) => {
-
-      let requestHandler = e.target.result;
-
-      let objectStoreHandler: IDBObjectStore;
-      // console.log(objectStoreHandler);
-
-      objectStoreHandler = requestHandler.createObjectStore(['usernames'], { autoIncrement: true });
-      // autoIncrement key
-      // keyPath : has to be a value
-
-      // objectStoreHandler.createIndex('nameIndex', 'username');
-
-      console.log(objectStoreHandler);
-
-      // objectStoreHandler.put({ // put
-      //     username: usernameValue,
-      // })
-
-      // objectStoreHandler.put(usernameValue, 1)
-
-      console.log('Upgraded');
-    }
-    // END UPGRADE NEEDED
-
-    this.idbRequest.onerror = () => {
-      console.log('Error');
-    }
-    // END ERROR NEEDED
-
-    this.idbRequest.onsuccess = (e: any) => {
-
-      let db = e.target.result;
+      let dbEventHandler = e.target.result;
 
       let transaction: IDBTransaction;
 
-      transaction = db.transaction(['usernames'], 'readwrite');
-
-      // // let storeHandler = transaction.objectStore(this.sabreObjectStore);
+      transaction = dbEventHandler.transaction(['usernames'], 'readwrite');
 
       let storeHandler = transaction.objectStore('usernames');
 
       let req = storeHandler.put(usernameValue, 'username')
 
       req.onsuccess = (event: any) => {
-        console.log('Username', event.target.result);
       }
 
       let getReq = storeHandler.get('username');
 
       getReq.onsuccess = (event: any) => {
-        console.log('Retrieved Username', event.target.result)
+        console.log('Username saved as', event.target.result)
         this.storedEmailAddress = event.target.result;
       }
-
-      // transaction.onerror = (event) => {
-      //     console.log('Error', e);
-      // }
-
-      // storeHandler.get(0).onsuccess = function (e: any) {
-      //     console.log('Username', e.target)
-      // }
-
-      // console.log('success');
-      // // console.log(results);   
     }
-
-    // END ON SUCCESS 
   }
 
-
-    // addData() { 
-    //     // TRANSACTION
-
-    //     let userObject = [{
-    //         username: this.email
-    //     }]
-
-    //     let transaction = this.db.transaction(this.sabreObjectStore, 'readwrite');
-
-    //     transaction.oncomplete = (event) => {
-    //         console.log('Transacton Completed Successfully')
-    //     }
-
-
-    //     let transactionObjectStore = transaction.objectStore(this.sabreObjectStore);
-    //     console.log(transactionObjectStore.username);
-
-    //     let transactionRequest = transactionObjectStore.add(userObject[0]);
-
-    //     transactionRequest.onsuccess = (event) => {
-    //         console.log('Transaction Successful ' + event);
-
-    //     }
-    // }
+  }
 
 }
