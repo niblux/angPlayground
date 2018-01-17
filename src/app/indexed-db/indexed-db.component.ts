@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexedDBComponent implements OnInit {
 
+  emailDbRequest
   openDBRequest;
   email: string;
+  storedEmailAddress: string;
   request;
   db;
   sabreObjectStore = 'sabreDatabase';
@@ -32,7 +34,6 @@ export class IndexedDBComponent implements OnInit {
 
     }
 
-    this.mode = environment.type.toUpperCase();
   }
 
   createDatabase() {
@@ -123,4 +124,4 @@ export class IndexedDBComponent implements OnInit {
 
   }
 
-}
+

@@ -1,3 +1,38 @@
-<p>
-  indexed-db works!
-</p>
+<div class="app-body">
+  <div class="card" style="width: 25rem;">
+    <div class="card-block">
+      <h4 class="card-title">Log into SABRE</h4>
+      <h3 *ngIf="!live" class="text-danger">{{mode}} {{gitbranch}}</h3>
+      <h6>{{gitcommit}}</h6>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <input class="form-control" value="{{ storedEmailAddress }}" #username id="email" name="email" placeholder="Email" type="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-asterisk"></i>
+          </span>
+          <input value="{{starredValue}}" autocomplete="off" class="form-control" id="password" #password placeholder="Password" type="text"
+            (keyup.enter)="login(username.value, hiddenPassword.value, password.value)">
+        </div>
+        <input name="password" #hiddenPassword hidden class="form-control" type="text" value="{{ originalTextValue }}">
+      </div>
+      <app-status-text></app-status-text>
+      <div class="buttonHolder">
+        <div class="form-group form-actions">
+          <button class="btn btn-sm btn-primary" type="submit" (click)="login(username.value, hiddenPassword.value, password.value)">Login</button>
+        </div>
+      </div>
+      <div class="">
+        <a [routerLink]="['/auth/reset']">Forgotten your password?</a>
+      </div>
+      <br />
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
