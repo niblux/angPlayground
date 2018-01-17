@@ -1,3 +1,4 @@
+import { ViewChild } from '@angular/core/src/metadata/di';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexedDBComponent implements OnInit {
 
+  openDBRequest;
   email: string;
   request;
   db;
   sabreObjectStore = 'sabreDatabase';
+
+  @ViewChild('username') username;
+
 
   constructor() { }
 
