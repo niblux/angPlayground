@@ -46,6 +46,15 @@ export class ObservablesComponent implements OnInit {
       return results;
     };
 
+    // Mutator Arrays 
+
+    // Shift, Pop, Push , Splice : Name of type of Array method 
+
+    // All array methods are actually written with prototype
+    Array.prototype.splice = (parameter) => {
+
+    } ;
+
 
 
 // JSON.stringify([1,2,3].map(function(x) { return x + 1; })) === '[2,3,4]'
