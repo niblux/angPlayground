@@ -9,6 +9,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { PasswordTestComponent } from './password-test/password-test.component';
 import { ObservablesComponent } from './observables/observables.component';
 import { IndexedDBComponent } from './indexed-db/indexed-db.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { IndexedDBComponent } from './indexed-db/indexed-db.component';
     ContactFormComponent,
     PasswordTestComponent,
     ObservablesComponent,
-    IndexedDBComponent
+    IndexedDBComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
