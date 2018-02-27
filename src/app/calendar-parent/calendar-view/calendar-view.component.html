@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header alert-warning">Result of Search Criteria (Department, Leave Type and Date Range)</div>
+        <div class="card-block">
+            
+            <div class="container">
+                <div class="row">
+                    <ng-container *ngFor="let month of calendarHeadings">
+                            <div class="col headingStyle">
+                                <ng-container *ngIf="month.clickViewType == 'q'">
+                                    <h5>{{month.title}}</h5>
+                                </ng-container>
+                                <ng-container *ngIf="month.clickViewType == 'm'">
+                                    <h5>{{month.weekNumber}}</h5>
+                                </ng-container>
+                                <ng-container *ngIf="month.clickViewType == 'w'">
+                                    <!-- TODO: This check for undefined value needs further work -->
+                                        <ng-container *ngIf="month.dayOfWeek !== undefined">
+                                            <h5>{{month.dayOfWeek}}</h5>
+                                        </ng-container>
+                                </ng-container>
+                            </div>
+                    </ng-container>
+                </div>
+            
+
+            <div *ngIf="calendarData">
+               <div class="row">
+                    <div *ngFor="let employeeData of calendarData" class="d-flex flex-nowrap">
+                        <div class="employee-name">{{employeeData.name}}</div>
+                        <div *ngFor="let div of employeeData.divs" class="col day_blocks" [class.aleave]="div.leaveType=='ALEAVE'" [class.sleave]="div.leaveType=='SLEAVE'"
+                            title="{{div.date}} {{div.leaveType}} {{div.text}}">&nbsp;
+                        </div>
+                    </div>
+               </div>
+            </div> 
+             </div>
+        </div>
+    </div>

@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-lg-6 text-center">
+      <div class="col-6 float-left">
+        <app-select-dropdown [list]="departmentList" defaultValue="All Departments" [label]="departmentLabel" [enablefilter]="enableFilter"
+          [dropdownIdentifier]="departmentIdentifer"></app-select-dropdown>
+        <div class="input-group mx-auto" style="width:100%;">
+          <span class="input-group-addon">Start</span>
+          <input #fromDate (blur)="getDateRange(fromDate.value)" type="date" />
+          <button (click)="searchCalendar()" class="btn btn-default alert-success" style="margin:0 auto">Search</button>
+
+        </div>
+      </div>
+      <div class="col-6 float-right">
+        <app-select-dropdown [list]="leaveTypesList" defaultValue="All Leave Types" [label]="leaveTypeLabel" [enablefilter]="enableFilter"
+          [dropdownIdentifier]="leaveIdentifier"></app-select-dropdown>
+      </div>
+    </div>
+
+
+    <div class="col-lg-6">
+      <app-select-dropdown (onchange)="resetSearchResults($event)" [list]="employeeList" [label]="employeeLabel" [enablefilter]="enableFilter"
+        [dropdownIdentifier]="employeeIdentifer" defaultValue="All Employees"></app-select-dropdown>
+      <div class="form-check form-check-inline">
+        <label class="form-check-label">
+  </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <label class="form-check-label">
+  </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <label class="form-check-label">
+  </label>
+      </div>
+    </div>
+  </div>
+</div>
