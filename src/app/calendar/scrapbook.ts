@@ -1,3 +1,45 @@
+
+
+// Monday 6th March ATTEMPTS
+            
+        // console.log(this.calendarRow);
+        /* Retrieve Dates in Month  */
+        // for (let i = 0; i < this.calendarRow.length; i++) {
+        //     datesInMonth = this.calendarRow[i].daysInMonth;
+        // }
+
+        // /* Store Dates in Month  */
+        // for (let prop in datesInMonth) {
+        //     dateMarker = datesInMonth[prop]['leaveDate'];
+        //     console.log(dateMarker);
+        //     daysInMonth.push(dateMarker);
+        // }
+
+
+
+            // this.calendarRow.forEach(recordToMatch => {
+            //     startDate = recordToMatch.records[0].startDate;
+            //     leaveDate = recordToMatch.records[0].leaveDate;
+
+            //     leaveMarker = recordToMatch.daysInMonth[0].leaveMarker;                
+
+            //     for (let j = 0; j < daysInMonth.length; j++) {
+            //          dateToMatch = daysInMonth[j];
+            //          if (dateToMatch === startDate) {
+            //              console.log('start match found');
+
+            //          }
+
+            //         if (dateToMatch === leaveDate) {
+            //             console.log('leave match found');
+
+            //         }
+            //     }
+
+            // });   
+
+
+
 // TUESDAY 27TH ATTEMPTS
 
 let calendarRow: CalendarRow[] = [];

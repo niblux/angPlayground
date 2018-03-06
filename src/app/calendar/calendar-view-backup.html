@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <!-- <div class="row no-gutters">
+        <div class="col-sm-2">
+            <div class="monthCell">Employee Name</div>
+            <ul class="employee_names employee_name">
+                <li *ngFor="let employee of filteredCalendarRecords">
+                    {{ employee.name }}
+                    <div class="clear"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm">
+            <div *ngFor="let div of employee.divs" class="dayCell" [class.aleave]="div.leaveType=='ALEAVE'" [class.sleave]="div.leaveType=='SLEAVE'"
+                title="{{div.date}} {{div.leaveType}} {{div.text}}">&nbsp;
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div> -->
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-block">
+            <div class="row no-gutters">
+                <div class="col-sm-2">
+                    <ul class="employees">
+                        <li><p> Employees </p></li>
+                        <li *ngFor="let employee of calendarRow">
+                            <p>{{ employee.employeeName.employeeName }}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-10">
+                    <div *ngFor="let heading of headingColumns" class="monthCell">
+                        {{ heading.monthName }}
+                    </div>
+                    <!-- <div class="dayCell" *ngFor="let day of calendarRow">
+                        {{ day.daysInMonth.key }}
+                    </div> -->
+                </div>
+                <!-- <div class="col-sm-10">
+                    <div *ngFor="let headbing of calendarRow">
+                        {{ heading.headings.monthName }}
+                        <div *ngFor="let day of calendarRow.headings">
+                            {{ day.dayBlocks.key }}
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
